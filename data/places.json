@@ -1,0 +1,54 @@
+[
+  {
+    "id": "abuja-donald-ekong-library",
+    "name": "University Library (Donald Ekong Library)",
+    "aliases": ["Donald Ekong Library", "Main Library", "University Library", "UL", "Library"]
+  },
+  {
+    "id": "abuja-senate-building",
+    "aliases": ["Senate", "Admin Block", "Administration", "VC's Office"]
+  },
+  {
+    "id": "abuja-faculty-of-engeneering",
+    "name": "Faculty of Engineering",
+    "aliases": ["Engineering", "FoE", "Engr"]
+  },
+  {
+    "id": "abuja-dept-of-petroleum-engeneering",
+    "name": "Dept. of Petroleum Engineering",
+    "aliases": ["Petroleum Engineering", "PNG"]
+  },
+  {
+    "id": "abuja-faculty-of-science-ofrima",
+    "name": "Faculty of Science (Ofrima Building)",
+    "aliases": ["Science", "Ofrima", "Ofirima", "Freema"]
+  },
+  { "id": "abuja-uba", "name": "UBA", "aliases": ["United Bank for Africa", "UBA ATM", "Bank"] },
+  { "id": "abuja-access-bank", "aliases": ["Access ATM", "Bank"] },
+  { "id": "abuja-zenith-bank", "aliases": ["Zenith ATM", "Bank"] },
+  { "id": "abuja-fidelity-bank", "aliases": ["Fidelity ATM", "Bank"] },
+  { "id": "abuja-sterling-bank", "aliases": ["Sterling ATM", "Bank"] },
+  { "id": "abuja-u-and-c-micro-finance-bank", "name": "U&C Microfinance Bank", "aliases": ["U and C", "UNC", "Bank"] },
+  { "id": "abuja-fcmb-flex-hub", "name": "FCMB Flex Hub", "aliases": ["FCMB", "First City Monument Bank", "Bank"] },
+  { "id": "choba-first-bank", "aliases": ["FBN", "First Bank ATM", "Bank"] },
+  {
+    "id": "abuja-o-b-lulu-briggs-health-center",
+    "name": "O. B. Lulu Briggs Health Centre",
+    "aliases": ["Health Centre", "University Health Centre", "Clinic", "Medical Centre", "Sick Bay"]
+  },
+  { "id": "abuja-sports-complex", "aliases": ["Sports Centre", "Gym"] },
+  { "id": "abuja-uniport-stadium", "aliases": ["Stadium", "Sports Field", "Pitch"] },
+  {
+    "id": "abuja-main-gate",
+    "name": "Abuja Campus Main Gate",
+    "aliases": ["Main Gate", "Abuja Gate"],
+    "category": "gate",
+    "campus": "abuja",
+    "lat": 4.89374,
+    "lng": 6.91441,
+    "description": "Main entrance to Abuja Campus, where Dan Etete Road meets East–West Road. Position taken from the OpenStreetMap road junction.",
+    "landmark": "On East–West Road, opposite Domino's Pizza",
+    "verified": false,
+    "source": "manual"
+  }
+]

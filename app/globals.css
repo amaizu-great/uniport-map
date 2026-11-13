@@ -1,26 +1,242 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "./theme.css";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@utility shadow-float {
+  box-shadow:
+    0 1px 2px rgb(var(--shadow) / 0.06),
+    0 6px 20px rgb(var(--shadow) / 0.1);
+}
+
+@utility shadow-sheet {
+  box-shadow:
+    0 -1px 0 rgb(var(--shadow) / 0.04),
+    0 -10px 40px rgb(var(--shadow) / 0.14);
+}
+
+html,
+body {
+  height: 100%;
+  overscroll-behavior: none;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- Phone-only ---------- */
+
+.app-frame {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--bg);
+  /* Keeps position:fixed descendants inside the app. */
+  transform: translateZ(0);
+}
+
+/* Wider than a phone (and not a phone on its side): ask people to use a phone instead. */
+.phone-only {
+  display: none;
+}
+@media (min-width: 641px) and (min-height: 501px) {
+  .app-frame {
+    visibility: hidden;
+  }
+  .phone-only {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    overflow-y: auto;
+    background: var(--surface-2);
+  }
+}
+
+/* ---------- Leaflet ---------- */
+
+.leaflet-container {
+  background: var(--surface-2);
+  font-family: inherit;
+}
+
+.leaflet-control-attribution {
+  background: var(--glass) !important;
+  color: var(--text-muted) !important;
+  font-size: 10px;
+  border-radius: 8px 0 0 0;
+}
+.leaflet-control-attribution a {
+  color: var(--text-muted) !important;
+}
+
+/* White-street look from standard OSM tiles. */
+.street-tiles {
+  filter: grayscale(1) brightness(1.1) contrast(0.88);
+}
+[data-theme="dark"] .street-tiles {
+  filter: grayscale(1) invert(1) brightness(0.82) contrast(0.92);
+}
+
+/* Labelled pins: coloured icon badge + name, Google-Maps style. */
+.poi {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  pointer-events: auto;
+  transform: translate(-14px, -14px);
+  cursor: pointer;
+}
+.poi-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);
+  transition: transform 160ms ease;
+}
+[data-theme="dark"] .poi-icon {
+  border-color: #1f1f1f;
+}
+.poi-label {
+  flex-shrink: 0;
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--label-text);
+  letter-spacing: -0.01em;
+  text-shadow:
+    0 0 2px var(--label-halo),
+    0 0 2px var(--label-halo),
+    0 0 3px var(--label-halo),
+    0 0 4px var(--label-halo);
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.poi.is-selected .poi-icon {
+  transform: scale(1.3) translateY(-3px);
+  box-shadow:
+    0 0 0 3px var(--primary),
+    0 2px 6px rgb(0 0 0 / 0.3);
+}
+.poi.is-selected .poi-label {
+  color: var(--primary-strong);
+  font-weight: 750;
+}
+
+/* Zoom-dependent label density (classes set on the map container). */
+.zoom-far .poi-icon {
+  width: 20px;
+  height: 20px;
+  border-width: 1.5px;
+}
+.zoom-far .poi-icon svg {
+  width: 11px;
+  height: 11px;
+}
+.zoom-far .poi {
+  transform: translate(-10px, -10px);
+}
+.zoom-far .poi:not(.is-selected) .poi-label,
+.zoom-mid .poi:not(.is-major):not(.is-selected) .poi-label {
+  display: none;
+}
+
+/* User location */
+.user-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: #1a73e8;
+  border: 3px solid #fff;
+  box-shadow:
+    0 1px 4px rgb(0 0 0 / 0.3),
+    0 0 0 0 rgb(26 115 232 / 0.5);
+  animation: user-pulse 2s infinite;
+}
+@keyframes user-pulse {
+  70% {
+    box-shadow:
+      0 1px 4px rgb(0 0 0 / 0.3),
+      0 0 0 16px rgb(26 115 232 / 0);
+  }
+  100% {
+    box-shadow:
+      0 1px 4px rgb(0 0 0 / 0.3),
+      0 0 0 0 rgb(26 115 232 / 0);
+  }
+}
+
+/* ---------- Overview scene ---------- */
+
+@keyframes scene-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+@keyframes scene-float {
+  50% {
+    transform: translateY(-5px);
+  }
+}
+.scene-campus {
+  animation: scene-rise 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  cursor: pointer;
+}
+.scene-campus:focus-visible {
+  outline: none;
+}
+.scene-campus:focus-visible .scene-tag rect,
+.scene-campus:hover .scene-tag rect {
+  stroke: var(--primary);
+  stroke-width: 2;
+}
+.scene-tag {
+  animation: scene-float 3.2s ease-in-out infinite;
+}
+.scene-pulse {
+  animation: scene-pulse 2s ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes scene-pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .user-dot,
+  .scene-campus,
+  .scene-tag,
+  .scene-pulse {
+    animation: none;
+  }
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

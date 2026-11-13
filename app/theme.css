@@ -1,0 +1,132 @@
+/*
+ * Map of UNIPORT theme. The single place to change colours.
+ * White-first UI; "Ocean Blue Serenity" blues for accents and the 3D campus models.
+ * lib/theme.ts mirrors the palette hex values for the manifest, icons and QR codes.
+ */
+
+/* Dark mode follows <html data-theme="dark">, set before paint by THEME_SCRIPT. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  --color-ocean-950: #01022e;
+  --color-ocean-900: #03045e;
+  --color-ocean-800: #023e8a;
+  --color-ocean-700: #0077b6;
+  --color-ocean-600: #0096c7;
+  --color-ocean-500: #00b4d8;
+  --color-ocean-400: #48cae4;
+  --color-ocean-300: #90e0ef;
+  --color-ocean-200: #ade8f4;
+  --color-ocean-100: #caf0f8;
+  --color-ocean-50: #e7fbff;
+}
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f5f8fb;
+  --surface-3: #ebf2f7;
+  --border: #e4ecf2;
+  --text: #0b1a3a;
+  --text-muted: #5b6b86;
+  --primary: #0077b6;
+  --primary-strong: #023e8a;
+  --on-primary: #ffffff;
+  --accent: #00b4d8;
+  --glass: rgb(255 255 255 / 0.86);
+  --shadow: 11 26 58;
+  --warn-bg: #fff4d6;
+  --warn-text: #7a5300;
+  --label-halo: #ffffff;
+  --label-text: #0b1a3a;
+  --mask: rgb(255 255 255 / 0.72);
+
+  /* overview scene */
+  --scene-sky-top: #ffffff;
+  --scene-sky-bottom: #eef6fb;
+  --scene-ground: #edf4f8;
+  --scene-ground-line: #e2ecf2;
+  --scene-road: #ffffff;
+  --scene-road-edge: #d5e3ec;
+  --scene-road-text: #5b6b86;
+  --scene-river: #bfe9f5;
+  --scene-slab-top: #ffffff;
+  --scene-slab-side: #d3e5ef;
+  --scene-slab-edge: #c4dae6;
+  --scene-bld-top: #90e0ef;
+  --scene-bld-left: #0096c7;
+  --scene-bld-right: #0077b6;
+  --scene-bld-top-alt: #ade8f4;
+  --scene-bld-left-alt: #48cae4;
+  --scene-bld-right-alt: #00b4d8;
+  --scene-bld-top-hero: #48cae4;
+  --scene-bld-left-hero: #023e8a;
+  --scene-bld-right-hero: #03045e;
+  --scene-tree: #9fd8b4;
+  --scene-tree-dark: #6fbf8e;
+}
+
+/* Dark mode: neutral greys (no navy), blue kept only for accents and the 3D buildings. */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121212;
+  --surface: #1c1c1e;
+  --surface-2: #242426;
+  --surface-3: #2e2e31;
+  --border: #333336;
+  --text: #f2f2f2;
+  --text-muted: #a1a1a6;
+  --primary: #6ab7ff;
+  --primary-strong: #9ccfff;
+  --on-primary: #0d0d0d;
+  --accent: #6ab7ff;
+  --glass: rgb(28 28 30 / 0.88);
+  --shadow: 0 0 0;
+  --warn-bg: #3a2f12;
+  --warn-text: #ffd978;
+  --label-halo: #1c1c1e;
+  --label-text: #ececec;
+  --mask: rgb(18 18 18 / 0.7);
+
+  --scene-sky-top: #121212;
+  --scene-sky-bottom: #161616;
+  --scene-ground: #1c1c1e;
+  --scene-ground-line: #262628;
+  --scene-road: #d9d9d9;
+  --scene-road-edge: #3a3a3d;
+  --scene-road-text: #3a3a3d;
+  --scene-river: #2a3440;
+  --scene-slab-top: #2a2a2d;
+  --scene-slab-side: #161618;
+  --scene-slab-edge: #3a3a3e;
+  --scene-bld-top: #48cae4;
+  --scene-bld-left: #0077b6;
+  --scene-bld-right: #023e8a;
+  --scene-bld-top-alt: #90e0ef;
+  --scene-bld-left-alt: #0096c7;
+  --scene-bld-right-alt: #0077b6;
+  --scene-bld-top-hero: #caf0f8;
+  --scene-bld-left-hero: #00b4d8;
+  --scene-bld-right-hero: #0096c7;
+  --scene-tree: #2f4a3a;
+  --scene-tree-dark: #24392d;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--border);
+  --color-ink: var(--text);
+  --color-ink-muted: var(--text-muted);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-on-primary: var(--on-primary);
+  --color-accent: var(--accent);
+  --color-glass: var(--glass);
+  --color-warn: var(--warn-bg);
+  --color-warn-ink: var(--warn-text);
+}
